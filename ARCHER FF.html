@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e6e6e6;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+        
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(94, 234, 212, 0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            color: #5eead4;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        main {
+            margin-top: 60px;
+        }
+        
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        #home {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(94, 234, 212, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 20%);
+            pointer-events: none;
+        }
+        
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        #home p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+            color: #cbd5e1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            border: none;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(2, 8, 20, 0.4);
+            transition: all 0.3s;
+            border: 1px solid rgba(94, 234, 212, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #5eead4, #38bdf8);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.2);
+            border-color: rgba(94, 234, 212, 0.3);
+        }
+        
+        .card h3 {
+            margin-bottom: 1.5rem;
+            color: #5eead4;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #cbd5e1;
+        }
+        
+        #about {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            max-width: 1000px;
+            margin: 3rem auto;
+            border: 1px solid rgba(94, 234, 212, 0.1);
+            position: relative;
+        }
+        
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(94, 234, 212, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.05) 0%, transparent 30%);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+        
+        #about p {
+            color: #e2e8f0;
+            position: relative;
+        }
+        
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(94, 234, 212, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(2, 8, 20, 0.3);
+        }
+        
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            color: #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        #contact input:focus,
+        #contact textarea:focus {
+            border-color: #5eead4;
+            box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.2);
+            outline: none;
+        }
+        
+        #contact input::placeholder,
+        #contact textarea::placeholder {
+            color: #94a3b8;
+        }
+        
+        /* Стили для сообщения после отправки */
+        .success-message {
+            display: none;
+            background: rgba(94, 234, 212, 0.15);
+            color: #5eead4;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid rgba(94, 234, 212, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 1px solid rgba(94, 234, 212, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        footer a {
+            color: #5eead4;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        footer a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            #home h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .card {
+                padding: 2rem 1.5rem;
+            }
+            
+            #contact form {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ARCHER FF</div>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Добро пожаловать на наш сайт</h1>
+            <p>Создаем современные и функциональные веб-решения для вашего бизнеса</p>
+            <a href="#contact" class="btn">Связаться с нами</a>
+        </section>
+
+        <section id="about">
+            <h2>О нас</h2>
+            <p>Мы - команда профессионалов, специализирующихся на разработке качественных веб-сайтов. Наш опыт и креативный подход помогут воплотить ваши идеи в жизнь. Мы верим, что каждый проект уникален и заслуживает индивидуального внимания.</p>
+        </section>
+
+        <section id="services">
+            <h2>Наши услуги</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Веб-разработка</h3>
+                    <p>Создание современных адаптивных сайтов с использованием最新的 технологий HTML5, CSS3 и JavaScript.</p>
+                </div>
+                <div class="card">
+                    <h3>Дизайн</h3>
+                    <p>Разработка уникального дизайна, который выделит ваш бренд среди конкурентов.</p>
+                </div>
+                <div class="card">
+                    <h3>Поддержка</h3>
+                    <p>Обеспечение бесперебойной работы вашего сайта и своевременное обновление контента.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <!-- Форма отправки запросов на email -->
+            <form action="https://formsubmit.co/archer4266@gmail.com" method="POST">
+                <!-- Скрытые поля для настройки FormSubmit -->
+                <input type="hidden" name="_subject" value="Новый запрос с сайта!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <!-- Поля формы -->
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <textarea name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
+                
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ARCHER FF. Все права защищены.</p>
+        <p>Свяжитесь с нами: <a href="mailto:archer4266@gmail.com">archer4266@gmail.com</a> | Тел: +7 (925) 713-07-27</p>
+    </footer>
+</body>
+</html>
